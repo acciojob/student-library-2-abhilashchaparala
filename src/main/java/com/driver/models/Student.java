@@ -14,6 +14,69 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public Date getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public Student(String emailId, String name, int age, String country) {
+        this.emailId = emailId;
+        this.name = name;
+        this.age = age;
+        this.country = country;
+    }
+
+    public void setUpdatedOn(Date updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
     @Column(unique = true)
     private String emailId;
     private String name;
@@ -50,6 +113,4 @@ public class Student {
                 ", updatedOn=" + updatedOn +
                 '}';
     }
-
-
 }

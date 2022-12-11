@@ -25,6 +25,54 @@ public class Author {
 
     public Author() {
     }
+    public Author(String name, String country, String email, int age){
+        this.email = email;
+        this.age = age;
+        this.country = country;
+        this.name = name;
+    }
+    public int getId() {
+        return id;
+    }
 
+    public int getAge() {
+        return age;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Book> getBooksWritten() {
+        return booksWritten;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBooksWritten(List<Book> booksWritten) {
+        this.booksWritten = booksWritten;
+    }
 }
 

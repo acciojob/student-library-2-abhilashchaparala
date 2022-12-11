@@ -19,6 +19,40 @@ public class Card {
     @JsonIgnoreProperties("card")
     private Student student;
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+
+    public Date getUpdatedOn() {
+        return updatedOn;
+    }
+
+
+    public CardStatus getCardStatus() {
+        return cardStatus;
+    }
+
+    public void setCardStatus(CardStatus cardStatus) {
+        this.cardStatus = cardStatus;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     @CreationTimestamp
     private Date createdOn;
 
@@ -35,4 +69,5 @@ public class Card {
     public Card(){
         this.cardStatus = CardStatus.ACTIVATED;
     }
+
 }

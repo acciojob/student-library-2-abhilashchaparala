@@ -23,6 +23,53 @@ public class Book {
     @JsonIgnoreProperties("booksWritten")
     private Author author;
 
+    public Book(String name, Genre genre, Author author, boolean available) {
+        this.name = name;
+        this.genre = genre;
+        this.author = author;
+        this.available = available;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
     @ManyToOne
     @JoinColumn
     @JsonIgnoreProperties("books")
