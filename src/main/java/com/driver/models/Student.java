@@ -66,8 +66,8 @@ public class Student {
         this.createdOn = createdOn;
     }
 
-    public Student(String emailId, String name, int age, String country) {
-        this.emailId = emailId;
+    public Student(String email, String name, int age, String country) {
+        this.emailId = email;
         this.name = name;
         this.age = age;
         this.country = country;
