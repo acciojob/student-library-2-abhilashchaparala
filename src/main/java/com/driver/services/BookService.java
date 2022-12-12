@@ -1,43 +1,61 @@
 package com.driver.services;
 
 import com.driver.models.Author;
-import com.driver.models.Book;
+import com.driver.models.Genre;
 import com.driver.repositories.AuthorRepository;
 import com.driver.repositories.BookRepository;
-import org.mockito.internal.matchers.Null;
+import com.driver.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BookService {
 
-
     @Autowired
     BookRepository bookRepository2;
+
     @Autowired
-    AuthorRepository authorRepository;
+    AuthorRepository authorRepository1;
 
     public void createBook(Book book){
-        Author author = authorRepository.findById(book.getAuthor().getId()).get();
-        List<Book> books = author.getBooksWritten();
-        books.add(book);
-        author.setBooksWritten(books);
-        authorRepository.save(author);
+
+
+        //Save the author in book
+
+        int authorId = book.getAuthor().getId();
+
+
+        Author author =  authorRepository1.findById(authorId).get();
+        System.out.println("author.getName()**********************");
+        //Update the bookList written by Author
+        author.getBooksWritten().add(book);
+        System.out.println(authorId);
+        //Updated the book
+        book.setAuthor(author);
+        //bookRepository2.save(book);
+        bookRepository2.save(book);
+
+        authorRepository1.save(author);
+
+
+
     }
 
-    public List<Book> getBooks(String genre, boolean available, String author){
-        List<Book> books = new ArrayList<>();
-        if(author == null && genre != null && available){
-            books = bookRepository2.findBooksByGenre(genre, available);
+    //This has to be rectified....and given a thought
+
+    public List<Book> getBooks(Genre genre, boolean available, String author){
+
+
+        if(genre != null && author != null){
+            return bookRepository2.findBooksByGenreAuthor(genre, author, available);
+        }else if(genre != null){
+            return bookRepository2.findBooksByGenre(genre, available);
+        }else if(author != null){
+            return bookRepository2.findBooksByAuthor(author, available);
+        }else{
+            return bookRepository2.findByAvailability(available);
         }
-        else if (!available && genre!=null && author != null){
-            books = bookRepository2.findBooksByAuthor(author,available).stream().filter(x->x.getGenre().toString().equals(genre)).collect(Collectors.toList());
-        }
-         //find the elements of the list by yourself
-        return books;
     }
 }

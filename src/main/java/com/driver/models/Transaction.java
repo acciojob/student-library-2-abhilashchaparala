@@ -20,6 +20,10 @@ public class Transaction {
         return transactionId;
     }
 
+    public void setTransactionStatus(TransactionStatus transactionStatus) {
+        this.transactionStatus = transactionStatus;
+    }
+
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }

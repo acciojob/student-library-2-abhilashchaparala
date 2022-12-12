@@ -20,8 +20,24 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
-    @JsonIgnoreProperties("booksWritten")
+    @JsonIgnoreProperties("books")
     private Author author;
+
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnoreProperties("books")
+    private Card card;
+
+
+    @Column(columnDefinition = "TINYINT(1)")
+    private boolean available;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("book")
+    private List<Transaction> transactions;
+
+    public Book() {
+    }
 
     public Book(String name, Genre genre, Author author) {
         this.name = name;
@@ -32,6 +48,10 @@ public class Book {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -50,14 +70,6 @@ public class Book {
         this.genre = genre;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
     public boolean isAvailable() {
         return available;
     }
@@ -66,24 +78,29 @@ public class Book {
         this.available = available;
     }
 
+    public Card getCard() {
+        return card;
+    }
+
     public void setCard(Card card) {
         this.card = card;
     }
 
-    @ManyToOne
-    @JoinColumn
-    @JsonIgnoreProperties("books")
-    private Card card;
-
-
-    @Column(columnDefinition = "TINYINT(1)")
-    private boolean available;
-
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("book")
-    private List<Transaction> transactions;
-
-    public Book() {
+    public Author getAuthor() {
+        return author;
     }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
 }
 
